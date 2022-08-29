@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: goldenwaste-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: goldenwaste
+  template:
+    metadata:
+      labels:
+        app: goldenwaste
+    spec:
+      containers:
+        - name: web
+          image: nourab/team3-hack:1.0 #created from Dockerfile Chandra
+          ports:
+          - containerPort: 5151
+        - name: mysql
+          image: mysql:latest
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: DevOps2022
+            - name: MYSQL_DATABASE
+              value: goldenwaste  
+          ports:
+            - containerPort: 3306
+              name: mysql
