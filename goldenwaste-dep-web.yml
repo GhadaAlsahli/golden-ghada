@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: goldenwaste-dep-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: goldenwaste
+  template:
+    metadata:
+      labels:
+        app: goldenwaste
+    spec:
+      containers:
+        - name: web
+          image: ghadamu/ghada-k8
+          ports:
+          - containerPort: 5151
+

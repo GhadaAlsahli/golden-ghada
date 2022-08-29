@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: goldenwaste-dep-mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: goldenwaste
+  template:
+    metadata:
+      labels:
+        app: goldenwaste
+    spec:
+        - name: mysql
+          image: mysql:latest
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: DevOps2022
+            - name: MYSQL_DATABASE
+              value: goldenwaste  
+          ports:
+            - containerPort: 3306
+              name: mysql
